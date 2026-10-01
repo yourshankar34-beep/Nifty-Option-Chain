@@ -116,7 +116,10 @@ document.getElementById('file').addEventListener('change',e=>{
   const f=e.target.files[0]; if(!f)return;
   const reader=new FileReader(); reader.onload=()=>render(reader.result); reader.readAsText(f);
 });
-render(ORIGINAL_CSV);
+fetch('./option-chain-ED-NIFTY-06-Oct-2026%20(10).csv')
+  .then(r => r.text())
+  .then(csv => render(csv))
+  .catch(() => render(ORIGINAL_CSV));
 </script>
 </body>
 </html>
